@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Collage Maker</title>
+    <style>
+    #fileInput {
+      display: none;
+    }
+
+    #selectedFiles {
+      margin-top: 10px;
+    }
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #sidebar {
+      width: 200px;
+      background-color: lightgray;
+      padding: 18px;
+    }
+
+    #content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    input[type="text"],[type="number"] {
+      width: 100%;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button#reset_images{
+      background-color: #555;
+      float:right;
+      width:40%;
+      padding: 5px 5px;
+    }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      margin-top: 100px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+
+    <input type="file" id="fileInput" multiple>
+    <button id='button-select-files' onclick="selectFiles()">Select Files</button>
+
+    <div>
+    <small><i><span id="selected_files_span">0 selected</span></i></small>
+    <button id="reset_images" onclick="resetImages()">Reset</button>
+    </div>
+
+    <hr>
+
+    <h3>Output</h3>
+    <table>
+        <tr>
+            <td><label for="filename" title="Will be prefixed with a timestamp">Filename</label></td>
+            <td><input type="text" id="filename" placeholder="filename" value="filename"
+                       title="Will be prefixed with a timestamp"></td>
+        </tr>
+        <tr>
+            <td><label for="extension">Extension</label></td>
+            <td><select id="extension">
+                <option value="png">PNG</option>
+                <option value="jpeg" selected="selected">JPEG</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="width">Width</label></td>
+            <td><input type="text" id="width" placeholder="1080" value="1080"></td>
+        </tr>
+        <tr>
+            <td><label for="height">Height</label></td>
+            <td><input type="text" id="height" placeholder="1080" value="1080"></td>
+        </tr>
+    </table>
+
+    <h3>Background</h3>
+    <table>
+        <tr>
+            <td><label for="bg_color">Color</label></td>
+            <td><input type="color" id="bg_color" name="Background Color" value="#ffffff"></td>
+        </tr>
+        <tr>
+            <td><label for="bg_scale">Scale</label></td>
+            <td><input type="number" id="bg_scale" min="0" max="3" step="0.1" name="Scale background" value="1"></td>
+        </tr>
+        <tr>
+            <td><label for="bg_repeat">Repeat</label></td>
+            <td><input type="number" id="bg_repeat" min="1" max="100" step="1" name="Repeat background" value="1"></td>
+        </tr>
+
+    </table>
+
+    <h3>Foreground <input type="checkbox" id="fg_checkbox" onClick="handleFgCheck()" name="foreground" checked></h3>
+    <div id="fg_area">
+        <table>
+            <tr>
+                <td><label for="foreground"
+                           title="Number of images that will be aligned next to eachother">Items</label></td>
+                <td><input type="number" id="foreground" placeholder="1" value="1" min="1" max="30" step="1"
+                           title="Number of images that will be aligned next to eachother"></td>
+            </tr>
+            <tr>
+                <td><label for="random_tilt" title="Maximum random tilt in degrees">Random Tilt</label></td>
+                <td><input type="number" id="random_tilt" title="Maximum random tilt in degrees" min="0" max="360"
+                           step="1" name="Random Tilt Foreground" value="0"></td>
+            </tr>
+            <tr>
+                <td><label for="fg_scale">Scale</label></td>
+                <td><input type="number" id="fg_scale" min="0" max="3" step="0.1" name="Scale foreground" value="1">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="mask_alpha">Mask Alpha:</label></td>
+                <td><input type="number" min="0" max="1" step="0.1" id="mask_alpha" placeholder="0" value="0"></td>
+            </tr>
+            <tr>
+                <td><label for="mask_color">Mask Color</label></td>
+                <td><input type="color" id="mask_color" name="Mask Color" value="#000000"></td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+
+    <button onclick="generateCollage()">Generate Collage</button>
+    <button onclick="saveImage()">Save output</button>
+    <table>
+        <tr>
+            <td><input id="save_n_count" type="number" value="5" default="5" min="1" max="100" step="1" onchange="updateButton()"></td>
+            <td><button id="save_n_button" onclick="saveNImages()">Save 5 outputs</button></td>
+        </tr>
+    </table>
+
+    <a id="link"></a>
+    <small><i>
+        <footer class="footer">&#169; <a href="http://www.josvromans.com">www.josvromans.com</a></footer>
+    </i></small>
+</div>
+
+<canvas id='C'></canvas>
+
+<script src="collage.js"></script>
+
+</body>
+</html>
