@@ -18,13 +18,24 @@ shuffleArray=(array)=>{
 
   return array;
 };
+calcRandomTilt=maxTilt=>{
+    /*
+    Given a 'maxTilt' in degrees, calculate a random tilt in radians!
+    Tilt goes both ways, positive and negative, so a maxTilt of 45 would be between -Pi/4 and PI/4
+    */
+    let tilt = Math.random() * maxTilt * 2 - maxTilt;
+    return tilt * Math.PI / 180;
+}
+
 generateCollage=()=>{
     let width = parseInt(document.getElementById("width").value);
     let height = parseInt(document.getElementById("height").value);
     let bgColor = document.getElementById("bg_color").value;
     let repeat = parseInt(document.getElementById("bg_repeat").value);
     let bgScale = parseFloat(document.getElementById("bg_scale").value);
+    let bgTilt = parseFloat(document.getElementById("bg_tilt").value);
     let fgScale = parseFloat(document.getElementById("fg_scale").value);
+
 
     C.width = width;
     C.height = height;
@@ -40,7 +51,7 @@ generateCollage=()=>{
     // draw every selected image with a random rotation, Do this <repeat> times
     for (let i=0;i<repeat;i++){
         IMAGES = shuffleArray(IMAGES);
-        IMAGES.forEach(i=>pasteImage(Math.random()*360,i,bgScale));
+        IMAGES.forEach(im=>pasteImage(calcRandomTilt(bgTilt),im,bgScale));
     }
 
     if (!document.getElementById("fg_checkbox").checked){return;}
@@ -53,19 +64,17 @@ generateCollage=()=>{
 
     // paste n images on the foreground
     IMAGES = shuffleArray(IMAGES);
-    let randomTilt = parseFloat(document.getElementById("random_tilt").value);
+    let fgTilt = parseFloat(document.getElementById("fg_tilt").value);
     let imagesForeground = parseInt(document.getElementById('foreground').value);
 
     for (let i=0; i<imagesForeground; i++){
-        let tilt = Math.random()*randomTilt*2-randomTilt;
-        let xCo = width/(2*imagesForeground) * (1+2*i);
-
         if (i>=IMAGES.length){
             console.log('There are less images selected than to be drawn on the foreground.');
             return;
         }
 
-        pasteImage(tilt, IMAGES[i], fgScale, xCo,height/2);
+        let xCo = width/(2*imagesForeground) * (1+2*i);
+        pasteImage(calcRandomTilt(fgTilt), IMAGES[i], fgScale, xCo,height/2);
     }
 };
 selectFiles=()=>{
@@ -88,7 +97,7 @@ resetImages=()=>{
     IMAGES=[];
     document.getElementById('selected_files_span').innerHTML = `${IMAGES.length} selected`;
 };
-pasteImage=(degrees,image,scale,x,y)=>{
+pasteImage=(rotation,image,scale,x,y)=>{
     // when x,y are not given, assign a random position on the canvas
     if (x===undefined){x = C.width*Math.random();}
     if (y===undefined){y = C.height*Math.random();}
@@ -97,11 +106,9 @@ pasteImage=(degrees,image,scale,x,y)=>{
     // the alternative is to untranslate & unrotate after drawing
     X.save();
 
-    // move to the x,y position
+    // move to the x,y position and rotate the canvas
     X.translate(x,y);
-
-    // rotate the canvas to the specified degrees
-    X.rotate(degrees*Math.PI/180);
+    X.rotate(rotation);
 
     // Calculate scaled width and height based on the original image dimensions and scale factor
     let scaledWidth = image.width * scale;
