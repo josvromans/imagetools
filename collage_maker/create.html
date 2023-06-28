@@ -111,6 +111,11 @@
             <td><label for="bg_repeat">Repeat</label></td>
             <td><input type="number" id="bg_repeat" min="1" max="100" step="1" name="Repeat background" value="1"></td>
         </tr>
+        <tr>
+            <td><label for="bg_tilt" title="Maximum random tilt in degrees for background images">Random Tilt</label></td>
+            <td><input type="number" id="bg_tilt" title="Maximum random tilt in degrees for background images" min="0" max="360"
+                       step="1" name="Random Tilt Background" value="45"></td>
+        </tr>
 
     </table>
 
@@ -124,8 +129,8 @@
                            title="Number of images that will be aligned next to eachother"></td>
             </tr>
             <tr>
-                <td><label for="random_tilt" title="Maximum random tilt in degrees">Random Tilt</label></td>
-                <td><input type="number" id="random_tilt" title="Maximum random tilt in degrees" min="0" max="360"
+                <td><label for="fg_tilt" title="Maximum random tilt in degrees for the foreground image(s)">Random Tilt</label></td>
+                <td><input type="number" id="fg_tilt" title="Maximum random tilt in degrees for the foreground image(s)" min="0" max="360"
                            step="1" name="Random Tilt Foreground" value="0"></td>
             </tr>
             <tr>
@@ -163,7 +168,7 @@
 
 <canvas id='C'></canvas>
 
-<script src="collage.js"></script>
+<script src="paste_collage.js"></script>
 
 </body>
 </html>
