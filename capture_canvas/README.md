@@ -8,8 +8,12 @@ So when opening the below page, it will generate and save 5 images in your Downl
 
 Try it out here: [https://josvromans.github.io/imagetools/capture_canvas/index](https://josvromans.github.io/imagetools/capture_canvas/index)
 
+This example adds the counter parameter to the filename, and thus it will download 20 images. (you can set this to any positive integer value you like)
+[https://josvromans.github.io/imagetools/capture_canvas/index?counter=20](https://josvromans.github.io/imagetools/capture_canvas/index?counter=20)
+
+
 # Notes
 
-- This is made as an example, some methods might be useful and can be copied and pasted in any other project you might have
+- This is purely made as an example of saving images, refreshing the page, and keeping track of things using an url parameter.Some methods might be useful and can be copied and pasted in any other project you might have
 - This code also takes care about adding parameters to the filename in a certain format, so that it can be used in other software (for example if you have a directory full with images and you want to sort them on certain properties)
 - In Chrome, you might have to give permission for multiple file download. In Firefox this works for me.
