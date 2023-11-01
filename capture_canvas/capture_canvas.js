@@ -234,7 +234,7 @@ if (counter === null){
 // now call the save method with the timeStamp in the filename. Then reload the page with an updated value for the counter
 saveImage(C, FILENAME, 'jpeg')
 
-if (counter > 0){
+if (counter > 1){
     // make sure the updated counter value is added to the url parameters. Changing the location will reload the page!
     window.location = window.location.pathname + '?counter='+(counter - 1).toString();
 }
