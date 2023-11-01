@@ -1,0 +1,15 @@
+Capture Canvas
+================
+
+An example webpage, that creates random artworks and saves the content of the html <canvas> as a jpeg image.
+This will be done in bulk, so you could save 100 different iterations by navigating to the webpage once. 
+This can work by putting ?counter=100 at the end of the url. When not adding anything, the default will be 5.
+So when opening the below page, it will generate and save 5 images in your Downloads folder.
+
+Try it out here: [https://josvromans.github.io/imagetools/capture_canvas/index](https://josvromans.github.io/imagetools/capture_canvas/index)
+
+# Notes
+
+- This is made as an example, some methods might be useful and can be copied and pasted in any other project you might have
+- This code also takes care about adding parameters to the filename in a certain format, so that it can be used in other software (for example if you have a directory full with images and you want to sort them on certain properties)
+- In Chrome, you might have to give permission for multiple file download. In Firefox this works for me.
