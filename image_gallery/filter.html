@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image gallery with filter</title>
+    <style>
+        /* Style for the grid container */
+        #image-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 images per row */
+            gap: 10px; /* Adjust the gap as needed for spacing */
+        }
+
+        /* Style for individual images */
+        .image-grid img {
+            max-width: 100%; /* Ensure images don't exceed the grid cell size */
+        }
+
+        #fileInput {
+          display: none;
+        }
+        #selectedFiles {
+          margin-top: 10px;
+        }
+        #sidebar {
+          width: 200px;
+          background-color: lightgray;
+          padding: 18px;
+        }
+        button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 10px;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        button#reset_images{
+          background-color: #555;
+          float:right;
+          width:40%;
+          padding: 5px 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+
+        <input type="file" id="fileInput" multiple>
+        <button id='button-select-files' onclick="selectFiles()">Select Files</button>
+
+        <div>
+        <small><i><span id="selected_files_span">0 selected</span></i></small>
+        <button id="reset_images" onclick="resetImages()">Reset</button>
+        </div>
+
+        <button id='button-apply-filters' onclick="applyFilters()">Apply filter(s)</button>
+    </div>
+
+    <div id="image-grid">
+        <!-- Generate image tags using a loop -->
+        <!-- Assuming the images are named 00.jpeg, 01.jpeg, ..., 99.jpeg -->
+        <!-- Adjust the number of images as needed -->
+    </div>
+
+    <canvas id='C'></canvas>
+    <script src="gallery_filter.js"></script>
+</body>
+</html>
