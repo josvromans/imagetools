@@ -84,6 +84,10 @@ handleFileSelect=(event)=>{
 };
 resetImages=()=>{
     IMAGES=[];
+    POPULATED = false;
+    FEATURES = {};
+    FEATURE_KEYS = [];
+    FILTER_VALUES = [];
     document.getElementById('selected_files_span').innerHTML = `${IMAGES.length} selected`;
 };
 
@@ -120,15 +124,16 @@ applyFilters=_=>{
             img.style.display = 'none'; // Hide the image
         }
     })
-    // const summerImages = document.querySelectorAll('img[data-palette="summer"]');
+    // document.querySelectorAll('img[data-palette=""]');
 }
 
 
 populateGrid=_=>{
     let grid = document.getElementById('image-grid')
 
-    // Iterate through the image file names and create image elements
     IMAGES.forEach((img, index) => {
         grid.appendChild(img);
     });
+
+    POPULATED = true;
 }
