@@ -1,8 +1,8 @@
 Capture Canvas
 ================
 
-An example webpage, that creates random artworks and saves the content of the html <canvas> as a jpeg image.
-This will be done in bulk, so you could save 100 different iterations by navigating to the webpage once. 
+An example webpage, that creates random artworks and saves the content of the html canvas as a jpeg image (png is also possible).
+This will be done in bulk, so you could save 100 different iterations by navigating to the webpage once. It will refresh automatically. 
 This can work by putting ?counter=100 at the end of the url. When not adding anything, the default will be 5.
 So when opening the below page, it will generate and save 5 images in your Downloads folder.
 
