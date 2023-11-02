@@ -6,25 +6,19 @@
         /* Style for the grid container */
         #image-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 images per row */
-            gap: 10px; /* Adjust the gap as needed for spacing */
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin: 30px;
         }
-
-        /* Style for individual images */
-        .image-grid img {
-            max-width: 100%; /* Ensure images don't exceed the grid cell size */
+        img {
+          width: 100%;
+          height: auto;
         }
-
         #fileInput {
           display: none;
         }
         #selectedFiles {
           margin-top: 10px;
-        }
-        #sidebar {
-          width: 200px;
-          background-color: lightgray;
-          padding: 18px;
         }
         button {
           background-color: #4CAF50;
@@ -35,34 +29,73 @@
           width: 100%;
           margin-bottom: 10px;
         }
-        button#reset_images{
-          background-color: #555;
-          float:right;
-          width:40%;
-          padding: 5px 5px;
+        .select-container {
+          display: flex;
+        }
+        select {
+          margin-right: 10px; /* Add space between select elements */
+        }
+        .menu-bar {
+          display: flex;
+          align-items: center;
+          background-color: #ccc;
+          padding: 10px;
+          color: white;
+        }
+        .generate-button {
+          flex: 20%;
+          text-align: center;
+        }
+        .slider {
+          flex: 28%;
+          padding: 5px;
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        .button-small {
+          flex: 8%;
+          text-align: center;
+        }
+        .color-picker {
+          flex: 8%;
+
+          margin-left: 8px;
+          margin-right: 8px;
+        }
+        #filterTitles {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        .titleItem {
+            flex: 1;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-
-    <div id="sidebar">
+    <div class="menu-bar">
 
         <input type="file" id="fileInput" multiple>
-        <button id='button-select-files' onclick="selectFiles()">Select Files</button>
+        <button class="generate-button" id='button-select-files' onclick="selectFiles()">Select Files</button>
+        <button class="generate-button" id='button-apply-filters' onclick="applyFilters()" style="display: none;">Apply filter(s)</button>
 
-        <div>
+        <input class="slider" type="range" id="width-slider" min="1" max="30" value="10">
+        <input class="slider" type="range" id="gap-slider" min="0" max="55" value="7">
+
+        <button class="button-small" onclick="shuffleImages()">Randomize</button>
+        <input class="color-picker" type="color" title="Select a color for the background" onchange="setBackgroundColor()" value="#ffffff">
+        <button class="button-small" id="reset_images" onclick="resetImages()">Reset</button>
+    </div>
+
+    <div id="filterTitles"></div>
+    <div id="filters" class="select-container"></div>
+
+    <div>
         <small><i><span id="selected_files_span">0 selected</span></i></small>
-        <button id="reset_images" onclick="resetImages()">Reset</button>
-        </div>
-
-        <button id='button-apply-filters' onclick="applyFilters()">Apply filter(s)</button>
     </div>
 
-    <div id="image-grid">
-        <!-- Generate image tags using a loop -->
-        <!-- Assuming the images are named 00.jpeg, 01.jpeg, ..., 99.jpeg -->
-        <!-- Adjust the number of images as needed -->
-    </div>
+    <div id="image-grid"></div>
 
     <canvas id='C'></canvas>
     <script src="gallery_filter.js"></script>
