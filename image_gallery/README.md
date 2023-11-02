@@ -1,3 +1,7 @@
+Test it here:
+[https://josvromans.github.io/imagetools/image_gallery/filter](https://josvromans.github.io/imagetools/image_gallery/filter)
+
+
 Display images in a grid, and when parameters are correctly encoded in the filename, you can filter on the properties you defined.
 Sliders can scale the images, making them larger or smaller, and also add spacing between images in the grid.
 The background color can be set with a color picker.
