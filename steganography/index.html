@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Steganography: Add/Subtract text from/to an image</title>
+    <style>
+    #fileInput {
+      display: none;
+    }
+
+    #selectedFiles {
+      margin-top: 10px;
+    }
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #sidebar {
+      width: 200px;
+      background-color: lightgray;
+      padding: 18px;
+    }
+
+    #content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    input[type="text"],[type="number"] {
+      width: 100%;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button#reset_images{
+      background-color: #555;
+      float:right;
+      width:40%;
+      padding: 5px 5px;
+    }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      margin-top: 100px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+
+    <input type="file" accept="image/png" id="fileInput">
+    <button id='button-select-files' onclick="fileInput.click()">Select PNG</button>
+
+    <div>
+    <small><i><span id="selected_files_span">No image selected</span></i></small>
+    <button id="reset_images" onclick="resetImages()">Reset</button>
+    </div>
+
+    <hr>
+
+    <button onclick="decrypt()">Read Text from Image</button>
+    <button onclick="encrypt()">Encrypt Text In Image</button>
+    <button onclick="saveImage()">Save Encrypted Image</button>
+
+    <a id="link"></a>
+    <small><i>
+        <footer class="footer">&#169; <a href="http://www.josvromans.com">www.josvromans.com</a></footer>
+    </i></small>
+</div>
+
+<canvas id='C'></canvas>
+
+
+<textarea id="TEXTAREA" name="textarea" rows="4" cols="50">
+
+</textarea>
+
+<script src="stega.js"></script>
+
+</body>
+</html>
