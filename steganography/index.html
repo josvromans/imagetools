@@ -11,6 +11,9 @@
       margin-top: 10px;
     }
 
+    button[disabled]{
+      background-color: gray;
+    };
 
     body {
       margin: 0;
@@ -42,6 +45,9 @@
       width: 100%;
       margin-bottom: 10px;
     }
+    #btn-writeHtml {
+      display: none;
+    }
     button#reset_images{
       background-color: #555;
       float:right;
@@ -66,29 +72,33 @@
     <button id='button-select-files' onclick="fileInput.click()">Select PNG</button>
 
     <div>
-    <small><i><span id="selected_files_span">No image selected</span></i></small>
-    <button id="reset_images" onclick="resetImages()">Reset</button>
+        <button id="reset_images" onclick="resetImages()">Reset</button><br>
+    </div>
+
+    <hr>
+    <div>
+        <small><i><span id="status">No image selected</span></i></small>
     </div>
 
     <hr>
 
-    <button onclick="decrypt()">Read Text from Image</button>
-    <button onclick="encrypt()">Encrypt Text In Image</button>
-    <button onclick="saveImage()">Save Encrypted Image</button>
+    <button id='btn-decrypt' onclick="decrypt()">Read Text from Image</button>
+    <button id='btn-writeHtml' onclick="writeHtml()">Replace this page with the HTML from the image</button>
+
+    <button id='btn-encrypt' onclick="encrypt()">Encrypt text into image and Download</button>
+
 
     <a id="link"></a>
     <small><i>
-        <footer class="footer">&#169; <a href="http://www.josvromans.com">www.josvromans.com</a></footer>
+
+        <footer class="footer">
+            More info in this <a href="https://www.josvromans.com/blog/2024/06/steganografy">blog post</a><br>
+            &#169; <a href="http://www.josvromans.com">www.josvromans.com</a>
+        </footer>
     </i></small>
 </div>
-
 <canvas id='C'></canvas>
-
-
-<textarea id="TEXTAREA" name="textarea" rows="4" cols="50">
-
-</textarea>
-
+<textarea id="TEXTAREA" name="textarea" rows="4" cols="50"></textarea>
 <script src="stega.js"></script>
 
 </body>
