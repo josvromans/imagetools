@@ -25,6 +25,10 @@
       width: 200px;
       background-color: lightgray;
       padding: 18px;
+      position: fixed;
+      left: 0;
+      top: 0;
+
     }
 
     #content {
@@ -62,6 +66,27 @@
     .footer {
       margin-top: 100px;
     }
+
+
+    #main-content {
+        margin-left: 200px; /* Pushes the content right of the sidebar */
+        display: flex;
+        height: 100vh;
+    }
+
+    /* The textarea and canvas each take 50% of the remaining width */
+    #TEXTAREA, #C {
+        flex: 1; /* Each item takes equal width (50% of the remaining space) */
+        margin: 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #TEXTAREA {
+        resize: none;
+        margin-left:36px;
+    }
+
     </style>
 </head>
 <body>
@@ -97,8 +122,14 @@
         </footer>
     </i></small>
 </div>
-<canvas id='C'></canvas>
-<textarea id="TEXTAREA" name="textarea" rows="4" cols="50"></textarea>
+
+<div id="main-content">
+
+    <textarea id="TEXTAREA" name="textarea" rows="20" cols="50"></textarea>
+    <canvas id='C'></canvas>
+</div>
+
+
 <script src="stega.js"></script>
 
 </body>
