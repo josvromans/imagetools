@@ -1,5 +1,5 @@
 IMAGE = undefined;
-IMAGE_NAME = 'no image';
+IMAGE_DATA = {};
 STOP_IDENTIFIER = '<<STOP>>';
 X=C.getContext('2d', { 'willReadFrequently': true });
 MAX_CHARACTERS_TO_READ = new URLSearchParams(window.location.search).get('max_characters') || 20000;
@@ -7,6 +7,15 @@ MAX_ITERS = parseInt(MAX_CHARACTERS_TO_READ)*8/3*4;
 MAX_ITERS = (MAX_ITERS / 4|0)*4;  // round down to closest multiple of 4
 var DETECTED_HTML;
 
+addRow=(k,v)=>{
+  let tr = document.createElement('tr');
+  [k,v].forEach(i=>{
+    let td = document.createElement('td');
+    td.innerHTML = i;
+    tr.appendChild(td)
+  })
+  document.getElementById('DATA_TABLE').appendChild(tr)
+}
 updateStatus=text=>document.getElementById('status').innerHTML=text;
 convertTextToBinary=text=>{
     let binary = '';
@@ -20,6 +29,10 @@ convertTextToBinary=text=>{
         let binaryString = String(charCode.toString(2)).padStart(8, '0')
         binary += binaryString;
     }
+    IMAGE_DATA.textLength = text.length;
+    IMAGE_DATA.textOriginalLength = text.length - STOP_IDENTIFIER.length;
+    IMAGE_DATA.binaryLength = binary.length;
+    IMAGE_DATA.pixelsContainMessage = Math.ceil(binary.length/3);
     return binary;
 }
 convertBinaryToText=binary=>{
@@ -70,10 +83,19 @@ encrypt=_=>{
         console.log('Adding data to image..');
     })
     .finally(() => {
-        let filename = 'ENCRYPTED__' + IMAGE_NAME;
+        let filename = 'HIDDEN__' + IMAGE_DATA.name;
         link.setAttribute('download', filename);
         link.setAttribute('href', C.toDataURL("image/png"));
         link.click();
+
+        addRow('Original message length', IMAGE_DATA.textOriginalLength);
+        addRow('Message length', IMAGE_DATA.textLength);
+        addRow('Binary length', IMAGE_DATA.binaryLength);
+        addRow('Pixels containing message', IMAGE_DATA.pixelsContainMessage);
+        let perc = IMAGE_DATA.pixelsContainMessage / IMAGE_DATA.totalPixels * 100;
+        addRow('Image adjusted', `${perc.toFixed(3)}%`);
+        addRow(`(${IMAGE_DATA.pixelsContainMessage} / ${IMAGE_DATA.totalPixels})`, ' pixels');
+
         updateStatus(`Downloaded ${filename}`);
         document.getElementById('btn-encrypt').disabled=false;
     });
@@ -127,16 +149,21 @@ fileInput.addEventListener('change', function() {
         const img = new Image();
         img.onload = function() {
             IMAGE = img;
-            IMAGE_NAME = file.name;
             C.width = img.width;
             C.height = img.height;
+            IMAGE_DATA.width = img.width;
+            IMAGE_DATA.height = img.height;
+            IMAGE_DATA.totalPixels = img.width * img.height;
+            IMAGE_DATA.name = file.name;
 
             let halfSpace = (window.innerWidth - 200) / 2;  // sidebar has width of 200 px.
             TEXTAREA.style.width = `${halfSpace}px`;
             C.style.width=`${halfSpace}px`;
             C.style.height=`${halfSpace*img.height/img.width}px`;
             X.drawImage(img, 0,0);
-            updateStatus(`${IMAGE_NAME} selected`);
+            updateStatus(`${file.name} selected`);
+            addRow('Image width', IMAGE_DATA.width);
+            addRow('Image height', IMAGE_DATA.height);
         };
         img.src = event.target.result;
     };
@@ -144,11 +171,12 @@ fileInput.addEventListener('change', function() {
 });
 resetImages=()=>{
     IMAGE=undefined;
+    IMAGE_DATA={};
     DETECTED_HTML=undefined;
-    IMAGE_NAME = 'no image';
+    DATA_TABLE.innerHTML='';
     X.fillRect(0,0,C.width,C.height);
     TEXTAREA.value = '';
     document.getElementById('btn-writeHtml').style.display = 'none';
     document.getElementById('btn-decrypt').style.display = 'block';
-    updateStatus(`${IMAGE_NAME} selected`);
+    updateStatus(`${IMAGE_DATA.name||'no image'} selected`);
 };
