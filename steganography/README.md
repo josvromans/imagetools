@@ -15,8 +15,8 @@ What to know?
 - The code will only read up to 20,000 text characters from an image. This is to prevent displaying 100 thousands of characters when uploading a large png file.
 When you want more that 20,000 characters, add: "?max_characters=1000000" to the url, and use a big number.
 - Encrypting is fast for texts of a few thousands characters in a normal size PNG file. 
-But there is currently no feedback when the image on the screen was actually changed. (this will be improved).
-- You can simply check if things work by using 'Encrypt Text In Image', when adding an actual text in the right text area.
+But there is currently no feedback when the image on the screen was actually changed.
+- You can simply check if things work by using 'Embed Text In Image', when adding an actual text in the right text area.
 When that is done, click 'Save Encrypted Image' to download the image.  Afterwards, you can 'Read Text From Image' for both the original file and the encrypted file, to see that the original file will output some random characters, and the encrypted file should output exactly the message you used.
 
 
