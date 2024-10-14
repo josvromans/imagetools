@@ -63,10 +63,11 @@ encryptTextIntoImage=text=>{
     let stringIndex=0;
 
     for (let i = 0; i < imgData.data.length; i++) {  // steps of 4 since there are 4 channels, RGB & alpha
-        if (i%4===3){continue}  // ignore alpha channel
-            let v = imgData.data[i];  // currentValue
-            let target = targetBinaryString[stringIndex]  // targetBinary
-            imgData.data[i] = v%2 === parseInt(target)?v:v<1?1:v>254?254:v+[-1,1][Math.random()*2|0];
+        if (i%4===3){continue}  // ignore alpha channel, leave the value in imageData untouched
+            let target = parseInt(targetBinaryString[stringIndex]);
+            // the target is the value in the binary string that should match with the channel value 'v'
+            let v = imgData.data[i];  // current value in imagedata (a channel value 0-255)
+            imgData.data[i] = v%2 === target?v:v^1;  // v^1 flips least significant bit
             stringIndex ++;  // position in target binary string, should not increment when i%4===3 (when it is the alpha channel)
         if (stringIndex > targetBinaryString.length-1){break}
     }
