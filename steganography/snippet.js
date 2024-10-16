@@ -38,8 +38,6 @@ onDone=(canvas, ctx)=>{
     html = _textArea.value;
 
 	let targetBinaryString = convertTextToBinary(html)
-	console.log(targetBinaryString)
-
     let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let stringIndex=0;
     for (let i = 0; i < imgData.data.length; i++) {
@@ -56,20 +54,33 @@ onDone=(canvas, ctx)=>{
 
 
 /*
+Below lines is identical to the above code, but not in a method. 
+It is slightly compressed (but certainly not optimal). It expects the canvas as C and context as X.
+
+let h=document.documentElement.outerHTML+'<<' + 'STOP>>';let a=document.createElement('textarea');
+a.innerHTML=h;h=a.value;let t='';for(let i=0;i<h.length;i++){let c=h.charCodeAt(i);if(c>255){c=32}
+let b=String(c.toString(2)).padStart(8,'0');t+=b}let d=X.getImageData(0,0,C.width,C.height);let s=0;
+for(let i=0;i<d.data.length;i++){if(i%4<3){let v=d.data[i];d.data[i]=v%2===parseInt(t[s])?v:v^1;s++;
+if(s>t.length-1){break}}}X.putImageData(d,0,0)
+*/
+
+
+
+/*
+The textarea hack used might handles some cases under the hood. 
+When doing things manually, there are a few things to keep in mind
+
+the percentage character is problematic, since it represents modulo in javascript code, but when using common
+unescape methods, it will can be handled as a special character.This can be tackled by using a custom
+modulo function and not use the percentage character at all.
+
 Alternatives to get the document
 new XMLSerializer().serializeToString(document)
 
-
 unescape() is a handy method, but it is deprecated and should not be used
-.replace() could be used, but the characters
-text.replace(/\\n/g, "\n")  could be used, but make sure to not put that first argument like that, you could construct it by useing charcodes
-I think it can work, but the textarea hack might handle more cases under the hood that are convenient (?)
+html.replace(/\\n/g, "\n") could be used, but the argument passed to replace should be
+rewritten (maybe using charCodes)
 
-
-the percentage character is problematic, since it represents modulo in javascript, but when using common
-unescape methods, it will be handled as a special character. So whenever you go that way, you want to use a custom
-modulo method in your code to avoid using the percentage character.
 
 Using a temporary textarea element, will handle these things under the hood, by the browsers implementation of unescaping
 */
-
