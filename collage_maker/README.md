@@ -7,7 +7,7 @@ Select a few images, or an entire directory of images and generate a quick rando
 The images will be randomly scattered on a canvas with specified dimensions.
 Optionally, One or more images can be put in the spotlight on the foreground, and optionally making the background lighter or darker.
 
-![Example Image](astrattas_1500x500.jpeg)
+![Example Image](readme_images/astrattas_1500x500.jpeg)
 
 # Usecases
 
@@ -15,20 +15,20 @@ Optionally, One or more images can be put in the spotlight on the foreground, an
 See the example above.
 
 - Quickly turn a folder with many outputs into a single image that can showcase the variety, by giving a glimpse of many images.
-![Example Image](attraction.jpeg)
+![Example Image](readme_images/attraction.jpeg)
 
 - Turn the background into the margin around a central image. This can be subtle (color white, alpha 0.9) or pretty wild and using color. And this can even be achieved with a single image (repeated many times on the background).
-![Example Image](bw_with_red_bg.jpeg)
-![Example Image](plots.jpeg)
+![Example Image](readme_images/bw_with_red_bg.jpeg)
+![Example Image](readme_images/plots.jpeg)
 
 - Ignore the background and set the alpha value to 1, which means the background iamges will not be visible.
 This way you can display an x amount of outputs nicely aligned next to eachother on a selected background color.
-![Example Image](layers.jpeg)
+![Example Image](readme_images/layers.jpeg)
 
 - Use images with transparent layers and create interesting results by blending images together.
 
 - Just make a random collage of images scattered all over the canvas
-![Example Image](vacation_photos.jpeg)
+![Example Image](readme_images/vacation_photos.jpeg)
 
 
 # Controls
