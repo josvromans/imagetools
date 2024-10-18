@@ -29,4 +29,4 @@ For now, this only works well when:
   - using dots in the filename can mess things up (everyting after '.' will be ignored)
   - integers will be handled in the code, and sorted numerically, all other things will be sorted alphabetically
  
-  This has yet to be tested and improved, and will get a better README eventualyl. For now just these notes.
+  This has yet to be tested and improved
