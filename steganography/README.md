@@ -9,9 +9,9 @@ What to know?
 =============
 - This only works for PNG files
 - The output image will change, but the color value in a single pixel can only change 3 units inside the possible space of 16 million values. So it will be practically invisible to see.
-- Only text characters in the 0-255 ascii range can be encoded in this method, all characters outside this set will be ignored (replaces by space)
+- Only text characters in the 0-255 ascii range can be encoded in this method, all characters outside this set will be ignored (replaced by space)
 - whenever you resize or compress the image, you will loose the message
-- The code adds '<<STOP>>' at the end of a message, so that when reading a message from the image, it knows where the message ends 
+- The code adds '\<\<STOP\>\>' at the end of a message, so that when reading a message from the image, it knows where the message ends 
 - The code will only read up to 20,000 text characters from an image. This is to prevent displaying 100 thousands of characters when uploading a large png file.
 When you want more that 20,000 characters, add: "?max_characters=1000000" to the url, and use a big number.
 - Hiding text into an image is fast for texts of a few thousands characters in a normal size PNG file. 
@@ -24,6 +24,8 @@ Disclaimer: this is not made to hide the text message in any sophisticated way.
 Look into 'steganography' for strategies on encrypting messages into images in ways that are hard for others to discover.
 
 I actually used the very simplest way I could think of myself, this is really just a 'back of the envelope' implementation that does the job.
+
+I wrote a blogpost with some explanation about pixel values, RGB values, and least significant bits [on my website](https://www.josvromans.art/writing/2024/10/steganography)
 
 
 How does this work?
