@@ -7,6 +7,11 @@ Sliders can scale the images, making them larger or smaller, and also add spacin
 The background color can be set with a color picker.
 The randomize button will just shuffle the order of image elements on the html page.
 
+You can use the images in the folder 'example_images_with_properties_in_filename' to load 100 test images in the same format. In the screenshot below, those are filtered and show only one specific palette on the white background (as selected).
+
+![Test images in the grid](readme_images/gallery_example.jpeg)
+(these images have been generated with the 'capture_canvas' tool, also in this repository)
+
 
 For now, this only works well when:
 - Images are all of the same dimensions / aspect ratio
