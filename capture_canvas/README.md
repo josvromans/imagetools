@@ -16,4 +16,5 @@ This example adds the counter parameter to the filename, and thus it will downlo
 
 - This is purely made as an example of saving images, refreshing the page, and keeping track of things using an url parameter.Some methods might be useful and can be copied and pasted in any other project you might have
 - This code also takes care about adding parameters to the filename in a certain format, so that it can be used in other software (for example if you have a directory full with images and you want to sort them on certain properties)
+- This [gallery tool](https://github.com/josvromans/imagetools/tree/main/image_gallery) can view the outputs filtered on their properties.
 - In Chrome, you might have to give permission for multiple file download. In Firefox this works for me.
