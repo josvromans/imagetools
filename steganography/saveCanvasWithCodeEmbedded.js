@@ -21,7 +21,7 @@ embedCode=(canvas, ctx)=>{
 	So in case it is a standalone html document containing the JavaScript to draw an artwork,
 	it means that the entire code to draw the image will be embedded in the image data.
 	*/
-	let html = document.documentElement.outerHTML + '~~END~~';  // this stop identifier is optional, but it is used by the other page in this repository that extracts text from an image
+	let html = document.documentElement.outerHTML + '~~' + 'END~~';  // this stop identifier is optional, but it is used by the other page in this repository that extracts text from an image
 
     // this is a hack to unescape the text by. See notes in the snipper.js file
     const _textArea = document.createElement('textarea');
